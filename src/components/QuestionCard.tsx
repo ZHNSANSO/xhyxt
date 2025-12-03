@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Question } from '../types';
 import { CheckCircle, XCircle, HelpCircle, Bookmark, ChevronDown, ChevronUp } from 'lucide-react';
 import clsx from 'clsx';
+import MathRenderer from './MathRenderer';
 
 interface QuestionCardProps {
   question: Question;
@@ -55,9 +56,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 
       {/* Question Body */}
       <div className="p-5">
-        <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-6 leading-relaxed math-text">
-          {question.questionText}
-        </h3>
+        <MathRenderer 
+          as="h3"
+          content={question.questionText} 
+          className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-6 leading-relaxed"
+        />
 
         <div className="space-y-3">
           {question.options.map((opt) => {
@@ -93,7 +96,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 )}
               >
                 <div className="flex-shrink-0">{icon}</div>
-                <div className="math-text text-sm md:text-base">{opt.text}</div>
+                <MathRenderer 
+                    as="div"
+                    content={opt.text} 
+                    className="text-sm md:text-base flex-1" 
+                />
               </button>
             );
           })}
@@ -117,9 +124,9 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
                 <HelpCircle className="w-4 h-4" />
                 答案解析
               </div>
-              <div 
-                className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed math-text bg-white dark:bg-slate-800 p-3 rounded border border-gray-100 dark:border-slate-700 shadow-sm"
-                dangerouslySetInnerHTML={{ __html: question.analysis }}
+              <MathRenderer 
+                content={question.analysis}
+                className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed bg-white dark:bg-slate-800 p-3 rounded border border-gray-100 dark:border-slate-700 shadow-sm"
               />
               <div className="mt-3 flex flex-wrap gap-2">
                 {question.tags.map(tag => (

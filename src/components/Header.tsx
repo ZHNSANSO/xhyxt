@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleTheme }) => {
         <div className="flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-primary-600 dark:text-primary-500" />
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
-            考研信号与系统
+            信号与系统期末自测
           </h1>
         </div>
         <button
