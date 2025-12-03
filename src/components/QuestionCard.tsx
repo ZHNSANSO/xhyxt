@@ -20,7 +20,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 }) => {
   const [showAnalysis, setShowAnalysis] = useState(false);
   
-  const isCorrect = selectedOption === question.correctOption;
   const isAnswered = !!selectedOption;
 
   return (
